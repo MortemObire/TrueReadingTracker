@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react'
 
 function Reading() {
 
-  const [books, setBooks] = useState([
+  const [books, setBooks] = useState(() => {
+    const savedBooks = localStorage.getItem('books');
+
+    return savedBooks ? JSON.parse(savedBooks) : [
     {
       id: crypto.randomUUID(),
       title: 'Metamorphosis',
@@ -31,7 +34,8 @@ function Reading() {
       totalPages: 100,
       pagesRead: 0,
     }
-  ]);
+    ];
+  });
 
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
@@ -40,6 +44,18 @@ function Reading() {
   books.map(book => {
     const progress = (book.pagesRead / book.totalPages) * 100;
   });
+
+  function addBooks() {
+
+  }
+
+  function updatePages() {
+  
+  }
+
+  function deleteBooks() {
+
+  }
 
   return (
     <main>
